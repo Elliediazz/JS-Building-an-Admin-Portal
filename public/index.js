@@ -4,6 +4,20 @@ async function main() {
     let books = await response.json()
 
     books.forEach(renderBook)
+
+    let banana = await fetch('http://localhost:3001/updateBook', {
+        method: "PATCH",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "id": 3,
+            "title": "Legends Of Arathrae",
+        })
+
+    })
+    let updatedBook = await banana.json();
+    console.log(updatedBook)
 }
 
 function renderBook(book) {
@@ -26,3 +40,4 @@ function renderBook(book) {
 }
 
 main()
+
